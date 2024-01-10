@@ -20,5 +20,5 @@ Birdy Client is built on:
 - make sure Node.js and NPM is installed.
 - install yarn using the command `npm install --global yarn`
 - install dependencies using `yarn install`
-- add a .env.local file and add the environment variables for Google oauth client id and the backend url for APIs (Check .env.sample for reference).
+- add a .env.local file and add the environment variables (Check .env.sample for reference).
 - run the sever using yarn dev.
