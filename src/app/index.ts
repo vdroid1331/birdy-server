@@ -7,6 +7,7 @@ import { Tweet } from "./tweet";
 import cors from "cors";
 import { GraphqlContext } from "../interfaces";
 import JWTService from "../services/jwt";
+import fileRouter from "../routes/routes";
 
 export async function initServer() {
   const app = express();
@@ -40,6 +41,8 @@ export async function initServer() {
   });
 
   await graphqlServer.start();
+
+  app.use("/api", fileRouter);
 
   app.use(
     "/graphql",
