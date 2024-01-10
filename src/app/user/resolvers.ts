@@ -7,7 +7,7 @@ import UserService from "../../services/user";
 
 const queries = {
   verifyGoogleToken: async (parent: any, { token }: { token: string }) => {
-    const resultToken = UserService.verifyGoogleAuthToken(token);
+    const resultToken = await UserService.verifyGoogleAuthToken(token);
     return resultToken;
   },
 
@@ -15,7 +15,7 @@ const queries = {
     const id = ctx.user?.id;
     if (!id) return null;
 
-    const user = UserService.getUserById(id);
+    const user = await UserService.getUserById(id);
 
     return user;
   },
@@ -24,11 +24,7 @@ const queries = {
     parent: any,
     { id }: { id: string },
     ctx: GraphqlContext
-  ) => {
-    const user = await UserService.getUserById(id);
-
-    return user;
-  },
+  ) => UserService.getUserById(id),
 };
 
 const extraResolvers = {

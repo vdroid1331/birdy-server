@@ -63,13 +63,9 @@ class UserService {
     return userToken;
   }
 
-  public static getUserById = async (id: string) => {
-    const user = await prismaClient.user.findUnique({
-      where: { id },
-    });
-
-    return user;
-  };
+  public static getUserById(id: string) {
+    return prismaClient.user.findUnique({ where: { id } });
+  }
 
   public static followUser(from: string, to: string) {
     return prismaClient.follows.create({
@@ -80,14 +76,19 @@ class UserService {
     });
   }
 
+  // public static unfollowUser(from: string, to: string) {
+  //   return prismaClient.follows.delete({
+  //     where: {
+  //       followerId_followingId: {
+  //         followerId: from,
+  //         followingId: to,
+  //       },
+  //     },
+  //   });
+  // }
   public static unfollowUser(from: string, to: string) {
     return prismaClient.follows.delete({
-      where: {
-        followerId_followingId: {
-          followerId: from,
-          followingId: to,
-        },
-      },
+      where: { followerId_followingId: { followerId: from, followingId: to } },
     });
   }
 }
