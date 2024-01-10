@@ -1,6 +1,6 @@
 import JWT from "jsonwebtoken";
 
-const JWT_SECRET: string = process.env.JWT_SECRET || "";
+const JWT_SECRET: string = process.env.JWT_SECRET as string;
 
 import { prismaClient } from "../clients/db";
 import { User } from "@prisma/client";
